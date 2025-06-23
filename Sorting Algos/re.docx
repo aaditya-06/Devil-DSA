@@ -1,0 +1,63 @@
+from docx import Document
+from fpdf import FPDF
+
+# Create PDF using FPDF
+class PDF(FPDF):
+    def header(self):
+        self.set_font('Arial', 'B', 14)
+        self.cell(0, 10, 'ADITYA NEHARE', ln=True, align='C')
+        self.set_font('Arial', '', 11)
+        self.cell(0, 10, '📧 adityanehare571@gmail.com | 🌐 GitHub: github.com/aaditya-06 | LinkedIn: linkedin.com/in/adityanehare-02d', ln=True, align='C')
+        self.ln(5)
+
+    def chapter_title(self, title):
+        self.set_font('Arial', 'B', 12)
+        self.set_text_color(0)
+        self.cell(0, 10, title, ln=True)
+        self.ln(2)
+
+    def chapter_body(self, body):
+        self.set_font('Arial', '', 11)
+        self.set_text_color(50)
+        self.multi_cell(0, 8, body)
+        self.ln()
+
+# Create the PDF document
+pdf = PDF()
+pdf.add_page()
+
+# Add Education
+pdf.chapter_title("EDUCATION")
+pdf.chapter_body("Bachelor of Engineering in Information Technology\nParvatibai Genba Moze College of Engineering, Pune\nExpected Graduation: May 2026")
+
+# Add Projects
+pdf.chapter_title("PROJECT EXPERIENCE")
+pdf.chapter_body(
+    "Streamify – IMDb Clone\n"
+    "- Developed a full-stack movie review platform using React and the TMDB API\n"
+    "- Implemented search, filter, and user rating features\n"
+    "- Deployed on Vercel for public access\n\n"
+    "Rentify – Property Listing Platform\n"
+    "- Built with MERN stack: MongoDB, Express.js, React.js, and Node.js\n"
+    "- Integrated user authentication, CRUD operations, and review functionality\n"
+    "- Utilized Cloudinary for secure image uploads\n"
+    "- Followed MVC architecture for maintainability\n\n"
+    "Scavenger – Netflix Clone\n"
+    "- Created a responsive streaming UI using React and TMDB API\n"
+    "- Included genre-based filtering, trending content section, and modal-based content previews"
+)
+
+# Add Skills
+pdf.chapter_title("TECHNICAL SKILLS")
+pdf.chapter_body(
+    "Languages: C++, JavaScript, HTML, CSS, SQL\n"
+    "Frameworks & Libraries: React.js, Node.js, Express.js, Tailwind CSS, Bootstrap\n"
+    "Databases: MongoDB, MySQL\n"
+    "Tools & Platforms: Git, GitHub, VS Code, Postman, Netlify, Cloudinary\n"
+    "Other: REST API Development, MVC Architecture, JWT & Passport.js Authentication, Basic CI/CD, Shell Scripting"
+)
+
+# Save PDF
+pdf_path = "/mnt/data/Aditya_Nehare_Resume.pdf"
+pdf.output(pdf_path)
+pdf_path
